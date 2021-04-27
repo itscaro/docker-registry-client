@@ -90,13 +90,13 @@ func (registry *Registry) ManifestDigestV2(repository, reference string) (digest
 
 	req, err := http.NewRequest("HEAD", url, nil)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	req.Header.Set("Accept", schema2.MediaTypeManifest)
 	resp, err := registry.Client.Do(req)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	if resp != nil {
 		defer resp.Body.Close()
